@@ -22,3 +22,17 @@ The above animation shows how to compile the project and start a simulation from
     ```
 
 3. After starting the simulation switch back to noVNC. There you'll see the RViz GUI. If the window is out of view, right-click the taskbar and hit `Maximize`.
+
+## Note for Mac users with Apple Silicon
+
+If you encounter problems with novnc, please run the following commands:
+
+```bash
+vncserver -kill :1 2>/dev/null || true
+pkill -f websockify || true
+
+vncserver -geometry 1440x900 :1
+websockify 6080 localhost:5901 --web /usr/share/novnc &
+```
+
+When asked for a password, enter vscode and skip the view-only password.
